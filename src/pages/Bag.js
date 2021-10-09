@@ -257,7 +257,6 @@ class Bag extends React.Component {
                             </div>
                         }
 
-
                         <div id="div-rodape" style={{backgroundColor: cores.corpo}}>
                             <div id="div-quantidade">
                                 <Remove id="icone-quantidade" style={{color: cores.fonteCorpo}}
