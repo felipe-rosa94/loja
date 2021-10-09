@@ -1,0 +1,50 @@
+#card-optional {
+    margin: 12px;
+}
+
+#card-content-optional {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#div-itens-optional {
+    display: flex;
+    flex-direction: column;
+}
+
+#div-labels-optional {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#label-nome-optional {
+    margin: 0;
+    margin-right: 8px;
+}
+
+#label-preco-optional {
+    font-size: small;
+    color: #ffba4d;
+    margin: 0;
+}
+
+#label-titulo-optional {
+    margin: 0;
+}
+
+#div-obrigatorio {
+    background-color: #282828;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#label-obrigatorio {
+    color: white;
+    font-size: small;
+    margin: 0;
+}

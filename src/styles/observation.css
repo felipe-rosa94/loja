@@ -1,0 +1,26 @@
+#card-observation {
+    margin: 12px;
+}
+
+#card-content-observation {
+    padding: 10px;
+}
+
+#div-itens-observation {
+    display: flex;
+    flex-direction: column;
+}
+
+#div-labels-observation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#label-titulo-observation {
+    margin: 0;
+}
+
+#label-nome-observation {
+    margin-bottom: 0;
+}

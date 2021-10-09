@@ -1,0 +1,13 @@
+{
+  "cores": {
+    "corpo": "#f5f5f5",
+    "fonteCorpo": "#222222",
+    "fonteCategoria": "#707070",
+    "cartaoProduto": "#ffffff",
+    "nomeProduto": "#222222",
+    "descricaoProduto": "#707070",
+    "precoProduto": "#ffba4d",
+    "botao": "#ffba4d",
+    "fonteBotao": "#222222"
+  }
+}

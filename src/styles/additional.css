@@ -1,0 +1,59 @@
+#card-additional {
+    margin: 12px;
+}
+
+#card-content-additional {
+    padding: 10px;
+}
+
+#label-titulo-additional {
+    margin: 0;
+}
+
+#div-labels-additional {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+#div-descritivos-additional {
+    display: flex;
+    flex-direction: column;
+}
+
+#div-botoes-additional {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#label-nome-additional {
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+#label-preco-additional {
+    margin-top: 4px;
+    margin-bottom: 0;
+    font-size: small;
+    color: #ffba4d;
+}
+
+#icone-additional {
+    height: 30px;
+    width: 30px;
+}
+
+#div-quantidade-additional {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 30px;
+    margin: 0;
+}
+
+#label-quantidade-additional{
+    margin: 0;
+}

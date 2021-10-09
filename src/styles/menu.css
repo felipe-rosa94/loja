@@ -1,0 +1,32 @@
+#div-drawer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+#label-titulo-menu {
+    font-weight: bold;
+    font-size: x-large;
+    margin: 8px;
+}
+
+#card-item-menu {
+    width: 200px;
+    display: flex;
+}
+
+#card-content-item-menu {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#label-item-menu {
+    margin: 4px;
+}
+
+#label-versao {
+    margin: 8px;
+}

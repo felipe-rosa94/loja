@@ -1,0 +1,299 @@
+#cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+#container-cart {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+#card-endereco {
+    margin: 6px 12px;
+    cursor: pointer;
+}
+
+#card-content-endereco {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#div-endereco {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#div-endereco-selecionado {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+#div-endereco-alterar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#label-endereco-alterar {
+    margin: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#label-endereco {
+    margin: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#button-adicionar-endereco {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#card-itens {
+    margin: 6px 12px;
+}
+
+#card-content-itens {
+    padding: 10px;
+}
+
+#div-lista-itens {
+    display: flex;
+    flex-direction: column;
+}
+
+#div-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#divider {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#div-limpa-carrinho {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#card-content-limpa-carrinho {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#label-esvaziar {
+    margin: 0 0 0 8px;
+    cursor: pointer;
+}
+
+#card-content-meu-pedido {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#label-meu-pedido {
+    margin: 0;
+}
+
+#card-forma-pagamento {
+    margin: 6px 12px;
+}
+
+#card-content-pagamento {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#card-content-forma-pagamento {
+    padding: 10px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+#radio-group-pagamento {
+    display: flex;
+    flex: 1;
+}
+
+#div-label-total {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+#label-valor-totais {
+    font-size: 14px;
+    margin: 0;
+}
+
+#label-valor-total {
+    font-size: medium;
+    margin: 0;
+}
+
+#label-item-produto {
+    font-size: medium;
+    margin: 0;
+}
+
+#label-sub-item-produto {
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 0;
+    margin-left: 8px;
+}
+
+#card-content-totais {
+    padding: 0;
+}
+
+#div-rodape-carrinho {
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    width: 60%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-shadow: 0 -1px 5px 0 rgba(219, 216, 219, 1);
+    -moz-box-shadow: 0 -1px 5px 0 rgba(219, 216, 219, 1);
+    box-shadow: 0 -1px 5px 0 rgba(219, 216, 219, 1);
+    background-color: #f5f5f5;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+}
+
+#div-input-cliente {
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+}
+
+#label-dialog-endereco {
+    font-size: small;
+    margin: 8px 0 0;
+}
+
+#dialog-content-carregando {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+#label-carregando {
+    margin: 10px;
+}
+
+#label-pagamento {
+    margin: 0;
+}
+
+#label-nome-produto {
+    margin: 0;
+}
+
+#label-preco-produto {
+    margin: 0;
+}
+
+#label-tipo-pagamento {
+    margin-bottom: 0;
+}
+
+#div-dinheiro {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#label-alterar-troco {
+    font-size: 14px;
+    margin: 0;
+}
+
+#dialog-selecione-entrega {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 1366px) {
+    #container-cart {
+        width: 70%;
+    }
+
+    #div-rodape-carrinho {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #container-cart {
+        width: 80%;
+    }
+
+    #div-rodape-carrinho {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #container-cart {
+        width: 90%;
+    }
+
+    #div-rodape-carrinho {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #container-cart {
+        width: 95%;
+    }
+
+    #div-rodape-carrinho {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #container-cart {
+        width: 100%;
+    }
+
+    #div-rodape-carrinho {
+        width: 100%;
+    }
+}

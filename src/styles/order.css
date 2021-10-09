@@ -1,0 +1,110 @@
+#card-pedido {
+    margin: 8px;
+    width: 300px;
+    background-color: #fffbe5;
+}
+
+#card-content-pedido {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+#div-data-id {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+#data-pedido {
+    margin: 4px;
+    font-size: small;
+}
+
+#id-pedido {
+    margin: 4px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+#nome-pedido {
+    margin: 4px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+#telefone-pedido {
+    margin: 4px;
+    font-size: small;
+}
+
+#endereco-pedido {
+    margin: 4px;
+    line-height: 20px;
+    font-size: small;
+}
+
+#produto-pedido {
+    margin: 4px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+#observacao-pedido {
+    margin: 4px;
+    font-size: small;
+}
+
+#div-subitens {
+    margin: 4px 4px 4px 10px;
+}
+
+#nome-subitens {
+    margin: 4px;
+    font-size: small;
+}
+
+#pagamento-pedido {
+    margin: 4px;
+    font-size: small;
+}
+
+#taxa-pedido {
+    margin: 4px;
+    font-size: small;
+}
+
+#subtotal-pedido {
+    margin: 4px;
+    font-size: small;
+}
+
+#troco-pedido {
+    margin: 4px;
+    font-size: small;
+}
+
+#total-pedido {
+    margin: 4px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+#data-pedido {
+    margin: 4px;
+}
+
+#div-itens {
+    display: flex;
+    flex-direction: row;
+}
+
+#item-pedido {
+    margin: 4px;
+    font-weight: bold;
+}
+
+#divider {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
