@@ -15,8 +15,8 @@ class Optional extends React.Component {
         checked: {}
     }
 
-    onRadio = (objeto, _id, tipo) => {
-        objeto._id = _id
+    onRadio = (objeto, id, tipo) => {
+        objeto.id = id
         objeto.quantidade = 1
         objeto.tipo = tipo
         this.setState({checked: objeto})
@@ -25,10 +25,10 @@ class Optional extends React.Component {
 
     render() {
         const {checked} = this.state
-        const {tituloAdicional, itens, _id, tipo} = this.props.etapa
+        const {tituloAdicional, itens, id, tipo} = this.props.etapa
         return (
             <div>
-                <div id={_id}/>
+                <div id={id}/>
                 <Card id="card-optional" style={{backgroundColor: cores.cartaoProduto}}>
                     <CardContent id="card-content-optional">
                         <FormLabel id="label-titulo-optional" style={{color: cores.descricaoProduto}}>
@@ -50,13 +50,13 @@ class Optional extends React.Component {
                                         <FormControlLabel id="label-nome-optional"
                                                           style={{color: cores.descricaoProduto}}
                                                           checked={i === checked}
-                                                          onChange={() => this.onRadio(i, _id, tipo)}
+                                                          onChange={() => this.onRadio(i, id, tipo)}
                                                           control={<RadioButton
                                                               style={{color: cores.descricaoProduto}}/>}
                                                           label={i.adicional}/>
                                         {
                                             (i.valor !== 0) &&
-                                            <FormLabel id="label-preco-optional">
+                                            <FormLabel id="label-preco-optional" style={{color: cores.precoProduto}}>
                                                 {i.valor.toLocaleString('pt-BR', {
                                                     style: 'currency',
                                                     currency: 'BRL'

@@ -90,7 +90,7 @@ class Bag extends React.Component {
         const {subitens} = this.state
         let index = -1
         subitens.forEach((i, p) => {
-            if (i._id === objeto._id) index = p
+            if (i.id === objeto.id) index = p
         })
         if (index !== -1) {
             subitens[index] = objeto
@@ -99,7 +99,7 @@ class Bag extends React.Component {
         }
         this.setState({subitens: subitens})
         this.calculaTotal(subitens)
-        this.positionStep(objeto._id)
+        this.positionStep(objeto.id)
     }
 
     calculaTotal = subitens => {
@@ -172,7 +172,7 @@ class Bag extends React.Component {
         if (etapasProduto === undefined) return
         let listaDivs = []
         etapasProduto.forEach(i => {
-            listaDivs.push(i._id)
+            listaDivs.push(i.id)
         })
         this.setState({listaDivs: listaDivs})
     }
@@ -194,6 +194,7 @@ class Bag extends React.Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.produto()
         this.configuracoes()
     }
@@ -247,16 +248,16 @@ class Bag extends React.Component {
                                 })
                             }
                         </div>
-
                         {
                             permitirObservacoes &&
                             <div id="div-observacao">
-                                <TextField variant="outlined" fullWidth={true} label="Observação"
-                                           placeholder="Observação"
-                                           name="observacao" onChange={this.handleInput}/>
+                                <div style={{background: '#ffffff', borderRadius: 8}}>
+                                    <TextField variant="outlined" fullWidth={true} label="Observação"
+                                               placeholder="Observação"
+                                               name="observacao" onChange={this.handleInput}/>
+                                </div>
                             </div>
                         }
-
                         <div id="div-rodape" style={{backgroundColor: cores.corpo}}>
                             <div id="div-quantidade">
                                 <Remove id="icone-quantidade" style={{color: cores.fonteCorpo}}
@@ -275,7 +276,7 @@ class Bag extends React.Component {
                                                style={{color: cores.fonteBotao}}>Adicionar</FormLabel>
                                     {
                                         ((quantidade * (preco + totalSubItens)) !== 0) &&
-                                        <FormLabel id="label-titulo-adicionar">
+                                        <FormLabel id="label-titulo-adicionar" style={{color: cores.fonteBotao}}>
                                             {
                                                 ((quantidade * (preco + totalSubItens))).toLocaleString('pt-BR', {
                                                     style: 'currency',
@@ -289,7 +290,6 @@ class Bag extends React.Component {
                         </div>
                     </div>
                 </div>
-
                 <Snackbar
                     anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
                     open={snackbar.show}

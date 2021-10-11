@@ -1,13 +1,13 @@
 {
   "cores": {
-    "corpo": "#f5f5f5",
-    "fonteCorpo": "#222222",
-    "fonteCategoria": "#707070",
-    "cartaoProduto": "#ffffff",
-    "nomeProduto": "#222222",
-    "descricaoProduto": "#707070",
-    "precoProduto": "#ffba4d",
-    "botao": "#ffba4d",
-    "fonteBotao": "#222222"
+    "corpo": "#1e1e1e",
+    "fonteCorpo": "#ffffff",
+    "fonteCategoria": "#ffffff",
+    "cartaoProduto": "#2c2c2c",
+    "nomeProduto": "#ffffff",
+    "descricaoProduto": "#cccccc",
+    "precoProduto": "#00cc00",
+    "botao": "#d90206",
+    "fonteBotao": "#ffffff"
   }
 }

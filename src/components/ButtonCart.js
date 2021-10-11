@@ -18,8 +18,8 @@ class ButtonCart extends React.Component {
         const {quantidade, total} = this.props
         return (
             <div id="botao-carrinho" style={{backgroundColor: cores.botao}} onClick={this.onClickCarrinho}>
-                <div id="div-quantidade-carrinho" style={{backgroundColor: cores.corpo}}>
-                    <FormLabel id="label-carrinho" style={{color: cores.fonteCorpo}}>{quantidade}</FormLabel>
+                <div id="div-quantidade-carrinho" style={{backgroundColor: cores.fonteBotao}}>
+                    <FormLabel id="label-carrinho" style={{color: cores.botao}}>{quantidade}</FormLabel>
                 </div>
                 <FormLabel id="label-carrinho" style={{color: cores.fonteBotao}}>Carrinho</FormLabel>
                 <FormLabel id="label-carrinho" style={{color: cores.fonteBotao}}>

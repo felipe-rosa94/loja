@@ -12,8 +12,10 @@
 }
 
 #card-item-menu {
-    width: 200px;
+    width: 250px;
     display: flex;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 #card-content-item-menu {
@@ -21,12 +23,16 @@
     padding: 10px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 #label-item-menu {
     margin: 4px;
+    cursor: pointer;
 }
 
 #label-versao {
-    margin: 8px;
+    font-size: 15px;
+    margin: 20px 8px 8px;
 }

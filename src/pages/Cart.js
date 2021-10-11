@@ -28,9 +28,9 @@ import Header from '../components/Header'
 import {MuiThemeProvider, createMuiTheme, withStyles} from '@material-ui/core/styles'
 
 import {getDistance} from 'geolib'
-import firebase from "firebase";
+import firebase from 'firebase'
 
-const {REACT_APP_KEY, REACT_APP_TABELA, REACT_APP_URL_PEDIDO} = process.env
+const {REACT_APP_VERSAO,REACT_APP_KEY, REACT_APP_TABELA} = process.env
 
 const RadioButton = withStyles({
     checked: {},
@@ -176,8 +176,10 @@ class Cart extends React.Component {
             },
             id_pedido: idPedido(),
             itens: itens,
+            data: new Date().getTime(),
             status: 'ENVIADO',
-            loja: REACT_APP_TABELA
+            loja: REACT_APP_TABELA,
+            versao: REACT_APP_VERSAO
         }
         if (troco !== 0) pedido.pagamento.troco = (troco - (subtotal + taxaEntrega))
         this.setState({dialogCarregando: true, mensagemCarregando: 'Enviando pedido'})
@@ -406,6 +408,7 @@ class Cart extends React.Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.listaItens()
         this.configuracoes()
         this.cliente()
@@ -453,7 +456,8 @@ class Cart extends React.Component {
                         <Header titulo="Carrinho" home={false}/>
                         {
                             (!isEmptyObject(endereco)) &&
-                            <Card id="card-endereco" onClick={this.onClickSelecionaEntrega}>
+                            <Card id="card-endereco" style={{backgroundColor: cores.cartaoProduto}}
+                                  onClick={this.onClickSelecionaEntrega}>
                                 <CardContent id="card-content-endereco">
                                     {
                                         (endereco.retirar !== undefined)
@@ -726,17 +730,17 @@ class Cart extends React.Component {
                             <DialogContentText>Selecione o tipo de entrega</DialogContentText>
                             {
                                 (retirada) &&
-                                <FormControlLabel style={{color: cores.descricaoProduto}} value="retirar"
-                                                  control={<RadioButton style={{color: cores.descricaoProduto}}/>}
+                                <FormControlLabel value="retirar"
+                                                  control={<RadioButton/>}
                                                   label="Retirar no local"
                                                   onChange={() => this.onRadioEntrega('Retirar no local')}/>
                             }
                             {
                                 (entrega) &&
                                 enderecos.map((e, index) => (
-                                    <FormControlLabel key={index} style={{color: cores.descricaoProduto}}
+                                    <FormControlLabel key={index}
                                                       value="retirar"
-                                                      control={<RadioButton style={{color: cores.descricaoProduto}}/>}
+                                                      control={<RadioButton/>}
                                                       label={`${e.logradouro}, ${e.numero}`}
                                                       onChange={() => this.onRadioEntrega(e)}/>
                                 ))

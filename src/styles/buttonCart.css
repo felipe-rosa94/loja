@@ -7,12 +7,13 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    -webkit-box-shadow: 0px -1px 5px 0px rgba(219, 216, 219, 1);
-    -moz-box-shadow: 0px -1px 5px 0px rgba(219, 216, 219, 1);
-    box-shadow: 0px -1px 5px 0px rgba(219, 216, 219, 1);
+    -webkit-box-shadow: 0px -1px 2px 0px rgba(219, 216, 219, 1);
+    -moz-box-shadow: 0px -1px 2px 0px rgba(219, 216, 219, 1);
+    box-shadow: 0px -1px 2px 0px rgba(219, 216, 219, 1);
     background-color: #f5f5f5;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    cursor: pointer;
 }
 
 #div-quantidade-carrinho {
@@ -26,6 +27,7 @@
 
 #label-carrinho {
     margin: 0;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1440px) {

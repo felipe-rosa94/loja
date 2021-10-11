@@ -10,9 +10,7 @@ class Header extends React.Component {
 
     onClickMenu = () => this.props.handleChange()
 
-    onClickVoltar = () => this.voltar()
-
-    voltar = () => this.props.history.goBack()
+    onClickVoltar = () => this.props.history.goBack()
 
     render() {
         const {home, titulo} = this.props

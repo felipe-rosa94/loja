@@ -7,7 +7,10 @@ import {
     SentimentVerySatisfiedRounded,
     MotorcycleRounded,
     CancelRounded,
-    LocationOnRounded
+    LocationOnRounded,
+    CheckCircle,
+    KeyboardArrowDown,
+    KeyboardArrowUp
 } from '@material-ui/icons'
 
 import {simplificaIdPedido, mostraDados, converteNumeroWhatsApp} from '../util'
@@ -16,6 +19,10 @@ import {cores} from '../configuracoes.json'
 const {REACT_APP_TABELA} = process.env
 
 class Timeline extends React.Component {
+
+    state = {
+        minimizar: false
+    }
 
     onClickWhatsApp = () => {
         let config = localStorage.getItem(`loja-${REACT_APP_TABELA}:configuracoes`)
@@ -31,75 +38,103 @@ class Timeline extends React.Component {
         window.location.href = `http://www.google.com/maps/place/${config.endereco}`
     }
 
+    onClickMininizar = () => this.setState({minimizar: !this.state.minimizar})
+
     render() {
+        const {minimizar} = this.state
         const {status, id_pedido, cliente: {endereco: {retirar}}} = this.props.status
         return (
             <div id="timeline" style={{backgroundColor: cores.cartaoProduto}}>
-                <div id="div-info">
-                    <FormLabel id="label-id_pedido"
-                               style={{color: cores.nomeProduto}}>{`Nº pedido: ${simplificaIdPedido(id_pedido)}`}</FormLabel>
-                    <FormLabel id="label-whatsapp" style={{color: cores.descricaoProduto}}
-                               onClick={this.onClickWhatsApp}>{`Chamar no WhatsApp`}</FormLabel>
-                </div>
                 {
-                    (retirar !== undefined) &&
-                    <div id="div-local" onClick={this.onClickMaps}>
-                        <LocationOnRounded style={{color: cores.descricaoProduto}}/>
-                        <FormLabel id="label-local" style={{color: cores.descricaoProduto}}>Ver rota até local de
-                            retirada</FormLabel>
+                    !minimizar &&
+                    <div>
+                        <div id="div-info">
+                            <FormLabel id="label-id_pedido"
+                                       style={{color: cores.nomeProduto}}>{`Nº pedido: ${simplificaIdPedido(id_pedido)}`}</FormLabel>
+                            <FormLabel id="label-whatsapp" style={{color: cores.descricaoProduto}}
+                                       onClick={this.onClickWhatsApp}>{`Chamar no WhatsApp`}</FormLabel>
+                        </div>
+                        {
+                            (retirar !== undefined) &&
+                            <div id="div-local" onClick={this.onClickMaps}>
+                                <LocationOnRounded style={{color: cores.descricaoProduto}}/>
+                                <FormLabel id="label-local" style={{color: cores.descricaoProduto}}>Ver rota até local
+                                    de
+                                    retirada</FormLabel>
+                            </div>
+                        }
+                        <div>
+                            <div>
+                                {(() => {
+                                    if (status === 'ENVIADO') {
+                                        return (
+                                            <div id="div-status-pedido">
+                                                <SendRounded id="icone-status" style={{color: cores.descricaoProduto}}/>
+                                                <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
+                                                    Pedido pendente
+                                                </FormLabel>
+                                            </div>
+                                        )
+                                    } else if (status === 'RECEBIDO') {
+                                        return (
+                                            <div id="div-status-pedido">
+                                                <ThumbUpAltRounded id="icone-status"
+                                                                   style={{color: cores.descricaoProduto}}/>
+                                                <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
+                                                    Pedido recebido
+                                                </FormLabel>
+                                            </div>
+                                        )
+                                    } else if (status === 'CONFIRMADO') {
+                                        return (
+                                            <div id="div-status-pedido">
+                                                <CheckCircle id="icone-status" style={{color: cores.descricaoProduto}}/>
+                                                <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
+                                                    Pedido confirmado
+                                                </FormLabel>
+                                            </div>
+                                        )
+                                    } else if (status === 'PRONTO') {
+                                        return (
+                                            <div id="div-status-pedido">
+                                                <SentimentVerySatisfiedRounded id="icone-status"
+                                                                               style={{color: cores.descricaoProduto}}/>
+                                                <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
+                                                    Pedido pronto
+                                                </FormLabel>
+                                            </div>
+                                        )
+                                    } else if (status === 'ENTREGANDO') {
+                                        return (
+                                            <div id="div-status-pedido">
+                                                <MotorcycleRounded id="icone-status"
+                                                                   style={{color: cores.descricaoProduto}}/>
+                                                <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
+                                                    Pedido saindo pra entrega
+                                                </FormLabel>
+                                            </div>
+                                        )
+                                    } else if (status === 'CANCELADO') {
+                                        return (
+                                            <div id="div-status-pedido">
+                                                <CancelRounded id="icone-status"
+                                                               style={{color: cores.descricaoProduto}}/>
+                                                <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>Pedido
+                                                    cancelado</FormLabel>
+                                            </div>
+                                        )
+                                    }
+                                })()}
+                            </div>
+                        </div>
                     </div>
                 }
-                <div>
-                    <div>
-                        {(() => {
-                            if (status === 'ENVIADO') {
-                                return (
-                                    <div id="div-status-pedido">
-                                        <SendRounded id="icone-status" style={{color: cores.descricaoProduto}}/>
-                                        <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
-                                            Pedido pendente
-                                        </FormLabel>
-                                    </div>
-                                )
-                            } else if (status === 'RECEBIDO') {
-                                return (
-                                    <div id="div-status-pedido">
-                                        <ThumbUpAltRounded id="icone-status" style={{color: cores.descricaoProduto}}/>
-                                        <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
-                                            Pedido recebido
-                                        </FormLabel>
-                                    </div>
-                                )
-                            } else if (status === 'PRONTO') {
-                                return (
-                                    <div id="div-status-pedido">
-                                        <SentimentVerySatisfiedRounded id="icone-status"
-                                                                       style={{color: cores.descricaoProduto}}/>
-                                        <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
-                                            Pedido pronto
-                                        </FormLabel>
-                                    </div>
-                                )
-                            } else if (status === 'ENTREGANDO') {
-                                return (
-                                    <div id="div-status-pedido">
-                                        <MotorcycleRounded id="icone-status" style={{color: cores.descricaoProduto}}/>
-                                        <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>
-                                            Pedido saindo pra entrega
-                                        </FormLabel>
-                                    </div>
-                                )
-                            } else if (status === 'CANCELADO') {
-                                return (
-                                    <div id="div-status-pedido">
-                                        <CancelRounded id="icone-status" style={{color: cores.descricaoProduto}}/>
-                                        <FormLabel id="label-status" style={{color: cores.descricaoProduto}}>Pedido
-                                            cancelado</FormLabel>
-                                    </div>
-                                )
-                            }
-                        })()}
-                    </div>
+                <div id="div-minimizar-maximizar" onClick={this.onClickMininizar}>
+                    <FormLabel id="label-status"
+                               style={{color: cores.descricaoProduto}}>{!minimizar ? 'Minimizar' : 'Maximizar'}</FormLabel>
+                    {!minimizar ?
+                        <KeyboardArrowDown style={{cursor: 'pointer', color: cores.descricaoProduto}}/> :
+                        <KeyboardArrowUp style={{cursor: 'pointer', color: cores.descricaoProduto}}/>}
                 </div>
             </div>
         )

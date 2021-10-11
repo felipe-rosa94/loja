@@ -15,6 +15,7 @@
     "react": "^17.0.2",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^17.0.2",
+    "react-facebook-pixel": "^1.0.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-simple-animate": "^3.3.12",
@@ -24,6 +25,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build && firebase deploy",
+    "deploy1": "react-scripts build && firebase deploy",
     "login": "firebase login",
     "logout": "firebase logout",
     "use add": "firebase use --add"

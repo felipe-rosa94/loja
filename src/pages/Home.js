@@ -11,9 +11,18 @@ import Menu from '../components/Menu'
 import firebase from '../firebase'
 import {escondeDados, mostraDados, padronizacao, rolagem, isEmptyObject} from '../util'
 import {cores} from '../configuracoes.json'
-import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core'
+import {
+    Button,
+    CircularProgress,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle, FormLabel
+} from '@material-ui/core'
+import ReactPixel from 'react-facebook-pixel'
 
-const {REACT_APP_TABELA} = process.env
+const {REACT_APP_TABELA, REACT_APP_USUARIO, REACT_APP_SENHA} = process.env
 
 let arrayCategorias
 
@@ -32,6 +41,8 @@ class Home extends React.Component {
         statusLoja: true,
         tituloAviso: '',
         mensagemAviso: '',
+        dialogCarregando: false,
+        mensagemCarregando: '',
         menu: false
     }
 
@@ -60,7 +71,7 @@ class Home extends React.Component {
     }
 
     itens = async () => {
-        try {
+        if (localStorage.getItem(`loja-${REACT_APP_TABELA}:autenticado`) === 'ok') {
             let products = await firebase.database().ref('produtos').child(REACT_APP_TABELA).once('value')
             products = products.val()
             if (products !== null) products = Object.values(products)
@@ -70,8 +81,7 @@ class Home extends React.Component {
             localStorage.setItem(`loja-${REACT_APP_TABELA}:produtos`, escondeDados(products))
             localStorage.setItem(`loja-${REACT_APP_TABELA}:categorias`, escondeDados(categories))
             this.montaLista(products, categories)
-        } catch (e) {
-            console.error(e)
+            this.setState({dialogCarregando: false})
         }
     }
 
@@ -133,54 +143,6 @@ class Home extends React.Component {
         this.setState({itens: itens, categorias: itensCategorias})
     }
 
-    configuracoes = () => {
-        let config = localStorage.getItem(`loja-${REACT_APP_TABELA}:configuracoes`)
-        if (config !== null) {
-            config = mostraDados(config)
-            const {banners} = config
-            this.setState({banners: banners})
-        }
-        firebase
-            .database()
-            .ref('configuracoes')
-            .child(REACT_APP_TABELA)
-            .once('value')
-            .then((data) => {
-                let settings = data.val()
-                if (settings !== null) {
-                    const {tituloSite, banners, statusLoja} = settings
-                    this.setState({titulo: tituloSite, banners: banners, statusLoja: statusLoja})
-                    localStorage.setItem(`loja-${REACT_APP_TABELA}:tituloSite`, escondeDados(tituloSite))
-                    localStorage.setItem(`loja-${REACT_APP_TABELA}:configuracoes`, escondeDados(settings))
-                }
-            })
-            .catch((e) => {
-                console.error(e)
-            })
-    }
-
-    raios = () => {
-        firebase
-            .database()
-            .ref('raios')
-            .child(REACT_APP_TABELA)
-            .once('value')
-            .then((data) => {
-                let ray = data.val()
-                if (ray !== null) {
-                    ray = Object.values(ray)
-                    ray.sort((a, b) => {
-                        if (a.distancia > b.distancia) return 1
-                        if (a.distancia < b.distancia) return -1
-                        return 0
-                    })
-                    localStorage.setItem(`loja-${REACT_APP_TABELA}:raios`, escondeDados(ray))
-                }
-            })
-            .catch((e) => {
-
-            })
-    }
 
     informacoesGravadas = () => {
         let produtos = localStorage.getItem(`loja-${REACT_APP_TABELA}:produtos`)
@@ -276,6 +238,77 @@ class Home extends React.Component {
         sessionStorage.removeItem(`loja-${REACT_APP_TABELA}:sucesso`)
     }
 
+    expiracaoPedido = expiracao => {
+        let date = new Date()
+        if (date.getTime() >= expiracao) localStorage.removeItem(`loja-${REACT_APP_TABELA}:pedido`)
+    }
+
+    configuracoes = () => {
+        if (localStorage.getItem(`loja-${REACT_APP_TABELA}:autenticado`) === 'ok') {
+            let config = localStorage.getItem(`loja-${REACT_APP_TABELA}:configuracoes`)
+            if (config !== null) {
+                config = mostraDados(config)
+                const {banners} = config
+                this.setState({banners: banners})
+            }
+            firebase
+                .database()
+                .ref('configuracoes')
+                .child(REACT_APP_TABELA)
+                .once('value')
+                .then((data) => {
+                    let settings = data.val()
+                    if (settings !== null) {
+                        const {tituloSite, banners, statusLoja} = settings
+                        this.setState({titulo: tituloSite, banners: banners, statusLoja: statusLoja})
+                        localStorage.setItem(`loja-${REACT_APP_TABELA}:tituloSite`, escondeDados(tituloSite))
+                        localStorage.setItem(`loja-${REACT_APP_TABELA}:configuracoes`, escondeDados(settings))
+                    }
+                    this.setState({dialogCarregando: false})
+                })
+                .catch((e) => {
+                    this.setState({dialogCarregando: false})
+                    console.error(e)
+                })
+        }
+    }
+
+    raios = () => {
+        if (localStorage.getItem(`loja-${REACT_APP_TABELA}:autenticado`) === 'ok') {
+            firebase
+                .database()
+                .ref('raios')
+                .child(REACT_APP_TABELA)
+                .once('value')
+                .then((data) => {
+                    let ray = data.val()
+                    if (ray !== null) {
+                        ray = Object.values(ray)
+                        ray.sort((a, b) => {
+                            if (a.distancia > b.distancia) return 1
+                            if (a.distancia < b.distancia) return -1
+                            return 0
+                        })
+                        localStorage.setItem(`loja-${REACT_APP_TABELA}:raios`, escondeDados(ray))
+                    }
+                    this.setState({dialogCarregando: false})
+                })
+                .catch((e) => {
+                    this.setState({dialogCarregando: false})
+                })
+        }
+    }
+
+    pixel = () => {
+        if (localStorage.getItem(`loja-${REACT_APP_TABELA}:configuracoes`) !== null) {
+            let configuracoes = mostraDados(localStorage.getItem(`loja-${REACT_APP_TABELA}:configuracoes`))
+            if ((localStorage.getItem(`loja-${REACT_APP_TABELA}:pixel`) !== configuracoes.pixel) && (configuracoes.pixel !== undefined)) {
+                ReactPixel.init(configuracoes.pixel)
+                localStorage.setItem(`loja-${REACT_APP_TABELA}:pixel`, configuracoes.pixel)
+            }
+        }
+    }
+
     status = () => {
         let pedido = localStorage.getItem(`loja-${REACT_APP_TABELA}:pedido`)
         if (pedido === null) return
@@ -291,28 +324,32 @@ class Home extends React.Component {
             })
     }
 
-    expiracaoPedido = expiracao => {
-        let date = new Date()
-        if (date.getTime() >= expiracao) localStorage.removeItem(`loja-${REACT_APP_TABELA}:pedido`)
-    }
-
     autenticacao = () => {
-        firebase
-            .auth()
-            .signInWithEmailAndPassword('pedidos@whiledev.com', 'UKY5ec5HeMzE')
-            .then((r) => {
-                console.log(r)
-            })
-            .catch((e) => {
-                console.log(e)
-            })
+        if (localStorage.getItem(`loja-${REACT_APP_TABELA}:autenticado`) !== 'ok') {
+            this.setState({dialogCarregando: true, mensagemCarregando: 'Carregando a loja'})
+            firebase
+                .auth()
+                .signInWithEmailAndPassword(REACT_APP_USUARIO, REACT_APP_SENHA)
+                .then((r) => {
+                    console.log('autendicado')
+                    localStorage.setItem(`loja-${REACT_APP_TABELA}:autenticado`, 'ok')
+                    this.configuracoes()
+                    this.raios()
+                    this.itens()
+                })
+                .catch((e) => {
+                    console.log(e)
+                })
+        }
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.autenticacao()
         this.informacoesGravadas()
         this.configuracoes()
         this.raios()
+        this.pixel()
         this.itens()
         this.carrinho()
         this.autoRolagemCategorias()
@@ -338,7 +375,9 @@ class Home extends React.Component {
             statusLoja,
             tituloAviso,
             mensagemAviso,
-            menu
+            menu,
+            dialogCarregando,
+            mensagemCarregando
         } = this.state
         return (
             <section id="home" style={{backgroundColor: cores.corpo}}>
@@ -364,6 +403,12 @@ class Home extends React.Component {
                     <DialogActions>
                         <Button onClick={this.cancelaAviso}>Ok</Button>
                     </DialogActions>
+                </Dialog>
+                <Dialog open={dialogCarregando}>
+                    <DialogContent id="dialog-content-carregando">
+                        <CircularProgress size={30}/>
+                        <FormLabel id="label-carregando">{mensagemCarregando}</FormLabel>
+                    </DialogContent>
                 </Dialog>
             </section>
         )
