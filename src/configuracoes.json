@@ -6,8 +6,8 @@
     "cartaoProduto": "#2c2c2c",
     "nomeProduto": "#ffffff",
     "descricaoProduto": "#cccccc",
-    "precoProduto": "#00cc00",
-    "botao": "#d90206",
-    "fonteBotao": "#ffffff"
+    "precoProduto": "#f0b857",
+    "botao": "#f0b857",
+    "fonteBotao": "#1e1e1e"
   }
 }

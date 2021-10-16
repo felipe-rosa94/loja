@@ -45,10 +45,10 @@ class ListItem extends React.Component {
                                                 <div id="div-label-produto">
                                                     <FormLabel
                                                         id="label-titulo-produto-list-item"
-                                                        style={{color: cores.nomeProduto}}>{l.produto}</FormLabel>
+                                                        style={{color: cores.nomeProduto}}>{l.codigo ? `${l.codigo} - ${l.produto}` : l.produto}</FormLabel>
                                                     <FormLabel
                                                         id="label-descricao"
-                                                        style={{color: cores.descricaoProduto}}>{l.descricao ? l.descricao : l.produto}</FormLabel>
+                                                        style={{color: cores.descricaoProduto}}>{l.descricao}</FormLabel>
                                                 </div>
                                                 <div id="div-label-preco">
                                                     {
